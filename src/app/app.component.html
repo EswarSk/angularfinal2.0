@@ -1,0 +1,66 @@
+﻿<div class="container">
+  <h1>WELCOME TO EMPLOYEES</h1>
+
+<form #addForm="ngForm" (ngSubmit)="ABC()">
+  <div class="form-group">
+    <input type="number" class="form-control" placeholder="Enter ID" name="id" #id="ngModel" [(ngModel)]="employeeID" required >
+    <div class="alert alert-danger" *ngIf="id.dirty && id.invalid">
+      ID can't be empty
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="addForm.pristine || addForm.invalid" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" 
+  aria-controls="collapseExample">Search</button>
+  
+</form>
+
+<div class="collapse" id="collapseExample" *ngIf="employeeID">
+  <div>
+    
+    <div class="alert alert-danger" *ngIf="!(EmployeeService.Employees[0])">
+        ID not found
+      </div> 
+    
+      <table class="table" *ngFor="let employee of EmployeeService.Employees">
+        <thead>
+          <tr>
+            <th scope="col">EMP ID</th>
+            <th scope="col">Emp NAME</th>
+            <th scope="col">Emp PAN</th>
+            <th scope="col">Emp DESIGNATION</th>
+            <th scope="col">Emp DOMAIN</th>
+            <th scope="col">Emp DOJ</th>
+            <th scope="col">Emp DOB</th>
+            <th scope="col">Emp SALARY</th>
+            <th scope="col">Emp MAILID</th>
+            <th scope="col">Emp PASSWORD</th>
+            
+          </tr>
+        </thead>
+    
+        <tbody >
+          <tr>
+            <th>{{employee.employeeId}}</th>
+            <td>{{employee.employeeName}}</td>
+            <td>{{employee.employeePan}}</td>
+            <td>{{employee.employeeDesignation}}</td>
+            <td>{{employee.employeeDomain}}</td>
+            <td>{{employee.employeeDoj}}</td>
+            <td>{{employee.employeeDob}}</td>
+            <td>{{employee.employeeSalary}}</td>
+            <td>{{employee.employeeMailid}}</td>
+            <td>{{employee.employeePassword}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+<!-- <div class="collapse" id="collapseExample" *ngIf="!flag">
+  <h1>The list is empty</h1>
+
+</div>
+   -->
+  </div>
+
+ 
